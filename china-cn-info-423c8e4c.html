@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>买球站 · 轻量指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f2f7fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1a2e3b;
+            line-height: 1.6;
+            padding: 0 1.25rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        /* 顶部导航 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 2px solid #d1e3ed;
+        }
+        .logo {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+            background: linear-gradient(145deg, #1b4f6b, #2b7a8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1f5c74;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #3da2b0;
+        }
+        /* hero 区 */
+        .hero {
+            margin: 2.8rem 0 2.2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 650;
+            color: #124257;
+            margin-bottom: 0.6rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #2b5a6b;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: #dbeaf2;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #1b5b6b;
+            margin-top: 1rem;
+        }
+        /* 核心介绍 */
+        .intro-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.2rem 2rem;
+            margin: 2rem 0 2.6rem;
+            box-shadow: 0 8px 20px rgba(27, 79, 107, 0.06);
+            border-left: 6px solid #2f96a8;
+        }
+        .intro-card h2 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            color: #134257;
+            margin-bottom: 1rem;
+        }
+        .intro-card p {
+            margin-bottom: 0.9rem;
+        }
+        .intro-card .highlight {
+            background: #e3f0f5;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #115269;
+        }
+        /* 3个场景卡片网格 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.6rem 0 2.2rem;
+        }
+        .scene-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.4rem 1.6rem;
+            box-shadow: 0 6px 14px rgba(0, 40, 50, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border-top: 4px solid #45a7b9;
+            display: flex;
+            flex-direction: column;
+        }
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 24px rgba(26, 78, 95, 0.08);
+        }
+        .scene-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .scene-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1d4f62;
+            margin-bottom: 0.4rem;
+        }
+        .scene-card p {
+            color: #2c5d6b;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        .scene-card .small-link {
+            margin-top: 1rem;
+            color: #2b8a9c;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dashed #8bc6d2;
+            align-self: flex-start;
+        }
+        /* 常见说明 / faq 摘要 */
+        .faq-section {
+            background: #edf5f9;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin: 2.8rem 0 2.4rem;
+        }
+        .faq-section h2 {
+            font-size: 1.5rem;
+            font-weight: 550;
+            color: #15485b;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #cde0e8;
+            padding-bottom: 0.8rem;
+        }
+        .faq-item:last-child {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #174f63;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+        .faq-answer {
+            color: #2b5a6b;
+            font-size: 0.95rem;
+            padding-left: 0.2rem;
+        }
+        .faq-answer a {
+            color: #1c7d8f;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+        }
+        .faq-answer a:hover {
+            color: #0b5566;
+        }
+        /* 尾部 */
+        .footer {
+            text-align: center;
+            padding: 2rem 0 1.8rem;
+            border-top: 1px solid #d2e2eb;
+            color: #3b6f7d;
+            font-size: 0.9rem;
+            margin-top: 1.4rem;
+        }
+        .footer a {
+            color: #1f7486;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* 移动端 */
+        @media (max-width: 780px) {
+            .navbar {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .faq-section {
+                padding: 1.6rem 1.2rem;
+            }
+            .intro-card {
+                padding: 1.8rem 1.2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 0 0.9rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航 -->
+        <nav class="navbar">
+            <span class="logo">⚡ 轻触指南</span>
+            <ul class="nav-links">
+                <li><a href="#intro">介绍</a></li>
+                <li><a href="#scenes">场景</a></li>
+                <li><a href="#faq">常见说明</a></li>
+            </ul>
+        </nav>
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>买球站 · 日常思路</h1>
+            <p>不是所有事情都需要复杂化，围绕「买球站」可以聊的其实是信息、节奏与选择。</p>
+            <span class="tagline">轻量导航 · 网格卡片</span>
+        </div>
+
+        <!-- 核心介绍 -->
+        <div class="intro-card" id="intro">
+            <h2>从「买球站」说起</h2>
+            <p>
+                很多人第一次听到<strong>买球站</strong>，以为只是一个简单的入口标签。实际上，这三个字背后往往关联着信息获取、偏好判断以及日常决策的节奏。无论你是出于好奇还是实际需求，先理解这个词汇所代表的实际语境，比匆忙下结论更重要。
+            </p>
+            <p>
+                在当下的网络环境中，<span class="highlight">买球站</span>往往指向一类提供资讯或工具的站点。如果你正在寻找一个可靠的信息起点，不妨从 <a href="https://china-cn-maiqiu.com" style="color:#1c7d8f; font-weight:600; text-decoration:underline; text-underline-offset:2px;">买球站</a> 开始了解——它的内容结构比较清晰，适合先浏览再判断。
+            </p>
+            <p>
+                我们常说，信息本身的质地比渠道更重要。保持观察，保持筛选，比盲目跟随更稳妥。
+            </p>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <div class="scene-grid" id="scenes">
+            <div class="scene-card">
+                <span class="icon">📚</span>
+                <h3>日常浏览场景</h3>
+                <p>工作间隙、通勤路上、午休时段，随手打开一个页面，看看最新动态。不需要深度投入，但能保持对趋势的敏感。</p>
+                <span class="small-link">节奏自然</span>
+            </div>
+            <div class="scene-card">
+                <span class="icon">🔍</span>
+                <h3>信息对比场景</h3>
+                <p>需要比较不同来源的表述、数据或服务方式。这时候一个稳定的起点页面能节省不少精力，比如直接参考 <a href="https://china-cn-maiqiu.com" style="color:#1f7486; text-decoration:underline; text-underline-offset:2px;">买球站</a> 的模块分区。</p>
+                <span class="small-link">效率优先</span>
+            </div>
+            <div class="scene-card">
+                <span class="icon">🧘</span>
+                <h3>沉淀思考场景</h3>
+                <p>有时我们不是要立刻行动，而是需要安静地了解某个概念。把页面当作一个参考坐标，读几段内容，再形成自己的看法。</p>
+                <span class="small-link">不赶时间</span>
+            </div>
+        </div>
+
+        <!-- 常见说明（faq摘要） -->
+        <div class="faq-section" id="faq">
+            <h2>❓ 常见说明</h2>
+            <div class="faq-item">
+                <div class="faq-question">“买球站”具体指什么？</div>
+                <div class="faq-answer">
+                    它是一个提供相关资讯与工具索引的站点，多数人把它当作信息聚合的起点。你可以通过 <a href="https://china-cn-maiqiu.com">买球站</a> 直接浏览其内容结构。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">这些信息靠谱吗？</div>
+                <div class="faq-answer">
+                    任何站点都需要结合个人判断。建议先观察页面逻辑、更新频率以及内容来源，再做决定。没有绝对可靠的信源，但好的起点能减少筛选成本。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">需要注册或下载吗？</div>
+                <div class="faq-answer">
+                    正常浏览一般不需要额外操作。如果页面有具体功能模块，通常会有明确提示。保持基本的上网安全意识即可。
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <footer class="footer">
+            <p>基于实际体验 · 轻量导航页 · 内容仅供参考</p>
+            <p style="margin-top: 0.4rem;">更多信息可访问 <a href="https://china-cn-maiqiu.com">买球站</a></p>
+        </footer>
+    </div>
+</body>
+</html>
