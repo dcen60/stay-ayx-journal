@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>日常对照与延伸 · ayx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #f4f9fc;
+            color: #1d2d3c;
+            line-height: 1.6;
+            padding: 0 1.2rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.2rem 0 4rem 0;
+        }
+
+        /* 主视觉 Hero — 信息卡片式 */
+        .hero-card {
+            background: linear-gradient(135deg, #d9f0ec 0%, #b8e0da 100%);
+            border-radius: 28px;
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 8px 24px rgba(46, 125, 118, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-main {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #165a54;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #1f5d57;
+            max-width: 72%;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        .hero-meta {
+            display: inline-block;
+            background: rgba(46, 125, 118, 0.12);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #21655e;
+            width: fit-content;
+            margin-top: 0.3rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 网格卡片布局 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin: 2.6rem 0 2.8rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 14px rgba(0, 40, 40, 0.03);
+            border: 1px solid #e3f0ed;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 28px rgba(46, 125, 118, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #165a54;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title span {
+            background: #d2ece6;
+            border-radius: 30px;
+            padding: 0.1rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #11554e;
+            letter-spacing: 0.3px;
+        }
+
+        .card p {
+            color: #2c4240;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.3rem;
+        }
+
+        .card li {
+            padding: 0.35rem 0 0.35rem 1.4rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #1f3d39;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.1rem;
+            color: #389a8b;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            margin: 2.4rem 0 2.4rem 0;
+            border: 1px solid #d9ede8;
+            box-shadow: 0 2px 10px rgba(0, 60, 55, 0.02);
+        }
+
+        .link-paragraph p {
+            font-size: 1rem;
+            color: #1f3a37;
+            margin-bottom: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .link-paragraph a {
+            color: #197a6e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b0d4cd;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            color: #0c5349;
+            border-bottom-color: #197a6e;
+        }
+
+        /* 聚集卡片 — 适合人群 / 场景聚合 */
+        .group-card {
+            background: #edf7f4;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .group-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #165a54;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+        }
+
+        .tag {
+            background: white;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #21655e;
+            border: 1px solid #c3dfd9;
+            transition: background 0.1s;
+        }
+
+        .tag:hover {
+            background: #d2ece6;
+            border-color: #7dbcaf;
+        }
+
+        /* 摘要 / 提示区块 */
+        .faq-note {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem;
+            margin-top: 2rem;
+            border-left: 4px solid #57aa9b;
+            box-shadow: 0 4px 12px rgba(46, 125, 118, 0.03);
+        }
+
+        .faq-note h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #165a54;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-note p, .faq-note li {
+            font-size: 0.95rem;
+            color: #294a45;
+        }
+
+        .faq-note ul {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+
+        .faq-note li {
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            position: relative;
+        }
+
+        .faq-note li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #389a8b;
+        }
+
+        .footer-note {
+            margin-top: 3.4rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5e7d78;
+            border-top: 1px solid #d2e4df;
+            padding-top: 2rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 响应式 */
+        @media (min-width: 640px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-main {
+                font-size: 2.6rem;
+            }
+
+            .hero-sub {
+                max-width: 70%;
+            }
+        }
+
+        @media (min-width: 860px) {
+            .grid-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero-card {
+                padding: 3.6rem 3.2rem;
+            }
+
+            .hero-sub {
+                max-width: 60%;
+            }
+
+            .page {
+                padding: 2.8rem 0 5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-card {
+                padding: 2rem 1.2rem;
+            }
+
+            .hero-main {
+                font-size: 1.9rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .link-paragraph {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .faq-note {
+                padding: 1.3rem 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 主视觉卡片 -->
+        <div class="hero-card">
+            <div class="hero-main">日常对照 · 延伸阅读</div>
+            <div class="hero-sub">从一次查询开始，慢慢熟悉一个领域。不赶时间，不堆术语。</div>
+            <div class="hero-meta">ayx · 信息卡片</div>
+        </div>
+
+        <!-- 用途卡片 与 适合人群 网格 -->
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-title">📋 日常查询 <span>对照</span></div>
+                <p>搜索某个概念、释义或背景时，总希望内容简洁、层次分明。这里提供一种平实的对照方式，像翻一本旧笔记本。</p>
+                <ul>
+                    <li>快速定位关键词</li>
+                    <li>对比不同侧面的描述</li>
+                    <li>保留延伸线索</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🧩 用途卡片 <span>场景</span></div>
+                <p>把常见用途拆成小块，每张卡片对应一个具体方向。适合需要随时参考或回顾的片段式阅读。</p>
+                <ul>
+                    <li>待办清单式结构</li>
+                    <li>一眼看到核心</li>
+                    <li>可随手摘录</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">👤 适合人群</div>
+                <p>无论是偶然点进来的读者，还是长期关注某个主题的使用者，都能找到自己舒服的阅读节奏。</p>
+                <ul>
+                    <li>喜欢分类整理的人</li>
+                    <li>需要稳定参考源</li>
+                    <li>对细节有好奇</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 (含严格 a 标签) -->
+        <div class="link-paragraph">
+            <p>有时候你只是想确认某个用法是否常见，或者想看看同一件事还能怎么表达。这种时候，一个结构清晰的对照页面会比零散的搜索结果更省力。试试在 <a href="https://stay-ayx.com.cn">ayx</a> 里顺着卡片脉络往下翻，或许能找到你想要的上下文。里面的内容并不堆砌，反而留了不少空白，让你自己补上理解。</p>
+            <p>如果你对某个卡片里的信息存疑，或者想进一步展开，直接点进对应的条目就好。整个页面没有多余的弹窗或广告，读起来像是翻开一本安静的参考手册。</p>
+        </div>
+
+        <!-- 人群 / 场景聚合卡片（额外） -->
+        <div class="group-card">
+            <h3>🧷 常见延伸场景</h3>
+            <div class="tag-list">
+                <span class="tag">比较差异</span>
+                <span class="tag">背景补充</span>
+                <span class="tag">术语确认</span>
+                <span class="tag">日常速查</span>
+                <span class="tag">笔记对照</span>
+                <span class="tag">非正式阅读</span>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 / 提示 -->
+        <div class="faq-note">
+            <h4>📌 一点说明</h4>
+            <ul>
+                <li>所有卡片内容均基于公开可查的材料整理，不构成专业建议。</li>
+                <li>适合作为查证起点，若需深度研究建议交叉参考多个来源。</li>
+                <li>ayx 页面结构偏向轻量，不追踪个人行为，可放心浏览。</li>
+                <li>如发现卡片描述与你的理解有出入，欢迎通过站内方式反馈。</li>
+            </ul>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer-note">
+            日常卡片 · 对照与延伸
+        </div>
+    </div>
+</body>
+</html>
